@@ -1,6 +1,6 @@
 public class Program {
     // Uncomment to enable migrations
-    // public static void Main(string[] args)
-    // {
-    // }
+     public static void Main(string[] args)
+     {
+     }
 }

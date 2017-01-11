@@ -14,6 +14,7 @@ namespace UltraRacing.Web.Controllers
             _racesRepository = racesRepository;
         }
 
+
         [Route("api/races")]
         public IEnumerable<Race> Get()
         {

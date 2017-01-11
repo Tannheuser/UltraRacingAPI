@@ -20,6 +20,10 @@ namespace UltraRacing.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Description");
+
+                    b.Property<string>("ImageUrl");
+
                     b.Property<double>("Price");
 
                     b.Property<DateTime>("StartDate");

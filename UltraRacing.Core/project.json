@@ -5,9 +5,9 @@
     "dotnet-ef": "1.1.0"
   },
   "buildOptions": {
-    "debugType": "portable"
+    "debugType": "portable",
     // Uncomment to enable migrations
-    // "emitEntryPoint": true
+    "emitEntryPoint": true
   },
   "dependencies": {
       "Microsoft.Extensions.DependencyInjection": "1.1.0",

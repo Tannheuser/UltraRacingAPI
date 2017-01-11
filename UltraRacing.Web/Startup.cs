@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using UltraRacing.Core.Models;
@@ -21,11 +17,12 @@ namespace UltraRacing.Web
         {
             services.AddMvc();
             services.AddScoped<IRacesService, RacesService>();
+            services.AddTransient<RacingSeeder>();
             services.AddEntityFrameworkSqlite().AddDbContext<RacingContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, RacingSeeder seeder)
         {
             loggerFactory.AddConsole();
 
@@ -35,6 +32,8 @@ namespace UltraRacing.Web
             }
 
             app.UseMvc();
+            app.ApplicationServices.GetService<RacingContext>().Database.Migrate();
+            seeder.Seed();
 //            app.Run(async (context) => { await context.Response.WriteAsync("Hello World!"); });
         }
     }
